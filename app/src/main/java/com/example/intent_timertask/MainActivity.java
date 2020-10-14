@@ -17,9 +17,13 @@ public class MainActivity extends AppCompatActivity {
     private int currentTime=0;
     private int timeData;
     private int timePermission;
+    private String booleanData;
+    private String booleanPermission;
     private TextView txt_numTimeMain;
     private TextView txt_numTimeData;
     private TextView txt_numTimePermission;
+    private TextView txt_booleanData;
+    private TextView txt_booleanPermission;
     private Timer mTimer=null;
 
     @Override
@@ -32,13 +36,18 @@ public class MainActivity extends AppCompatActivity {
         txt_numTimeMain = (TextView) findViewById(R.id.txt_numTimeMain);
         txt_numTimeData = (TextView) findViewById(R.id.txt_numTimeData);
         txt_numTimePermission = (TextView) findViewById(R.id.txt_numTimePermission);
+        txt_booleanData = (TextView) findViewById(R.id.txt_booleanData);
+        txt_booleanPermission = (TextView) findViewById(R.id.txt_booleanPermission);
         chronometer();
 
         timeData = getIntent().getIntExtra("timeData", 0);
-        txt_numTimeData.setText(String.valueOf(timeData));
+        txt_numTimeData.setText(String.valueOf(timeData));          //No se por qué pero no funciona, sigue siendo 0 tdo el rato
         timePermission = getIntent().getIntExtra("timePermission", 0);
         txt_numTimePermission.setText(String.valueOf(timePermission));
-
+        booleanData = getIntent().getStringExtra("booleanData");
+        txt_booleanData.setText(String.valueOf(booleanData));
+        booleanPermission = getIntent().getStringExtra("booleanPermission");
+        txt_booleanData.setText(String.valueOf(booleanPermission));
         //txt_numTimeData.setText(getIntent().getStringExtra("timeData"));
         //txt_numTimePermission.setText(getIntent().getStringExtra("timePermission"));
 
