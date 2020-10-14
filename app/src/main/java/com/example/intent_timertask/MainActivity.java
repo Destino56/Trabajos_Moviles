@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         chronometer();
 
         timeData = getIntent().getIntExtra("timeData", 0);
-        txt_numTimeData.setText(String.valueOf(timeData));          //No se por qué pero no funciona, sigue siendo 0 tdo el rato
+        txt_numTimeData.setText(String.valueOf(timeData));          //No se por qué pero no funciona, sigue siendo 0 tdo el rato, no se si por que pone el defaultValue ya que no le llega la información o yo que sé
         timePermission = getIntent().getIntExtra("timePermission", 0);
         txt_numTimePermission.setText(String.valueOf(timePermission));
         booleanData = getIntent().getStringExtra("booleanData");
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goActivity2 = new Intent(MainActivity.this, SaveDataActivity.class);
                 goActivity2.putExtra("timeMain", currentTime);
+                //mTimer.cancel();  No sé como renaudarlo luego
                 startActivityForResult(goActivity2, 2);
             }
         });
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goActivity3 = new Intent(MainActivity.this, AddPermissionsActivity.class);
                 goActivity3.putExtra("timeMain", currentTime);
+                //mTimer.cancel();  No sé como renaudarlo luego
                 startActivityForResult(goActivity3, 3);
             }
         });
