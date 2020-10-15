@@ -39,7 +39,7 @@ public class SaveDataActivity extends AppCompatActivity {
         btn_goHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goBack = new Intent(/*SaveDataActivity.this, MainActivity.class*/);
+                Intent goBack = new Intent(SaveDataActivity.this, MainActivity.class);
                 goBack.putExtra("timeData", currentTime);
                 //startActivity(goBack);
                 finish();

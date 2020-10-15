@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -39,16 +40,9 @@ public class MainActivity extends AppCompatActivity {
         txt_numTimePermission = (TextView) findViewById(R.id.txt_numTimePermission);
         txt_booleanData = (TextView) findViewById(R.id.txt_booleanData);
         txt_booleanPermission = (TextView) findViewById(R.id.txt_booleanPermission);
-        chronometer();
 
-        timeData = getIntent().getIntExtra("timeData", 0);
-        txt_numTimeData.setText(String.valueOf(timeData));          //No se por qué pero no funciona, sigue siendo 0 tdo el rato, no se si por que pone el defaultValue ya que no le llega la información o yo que sé
-        timePermission = getIntent().getIntExtra("timePermission", 0);
-        txt_numTimePermission.setText(String.valueOf(timePermission));
-        booleanData = getIntent().getStringExtra("booleanData");
-        txt_booleanData.setText(String.valueOf(booleanData));
-        booleanPermission = getIntent().getStringExtra("booleanPermission");
-        txt_booleanData.setText(String.valueOf(booleanPermission));
+
+
         //txt_numTimeData.setText(getIntent().getStringExtra("timeData"));
         //txt_numTimePermission.setText(getIntent().getStringExtra("timePermission"));
 
@@ -73,6 +67,42 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intentData){
+        try{
+            //txt_numTimeData.setText(String.valueOf(requestCode));
+           super.onActivityResult(requestCode, resultCode, intentData);
+            if(requestCode==2){
+
+                txt_numTimePermission.setText(String.valueOf(requestCode));
+                //timeData = intentData.getIntExtra("timeData", 5);
+                //txt_numTimeData.setText(String.valueOf(timeData));
+                String timeData = String.valueOf(intentData.getIntExtra("timeData", 5));
+                txt_numTimeData.setText(timeData);
+                booleanData = intentData.getStringExtra("booleanData");
+                txt_booleanData.setText(String.valueOf(booleanData));
+
+            }else if(requestCode==3){
+                timePermission = intentData.getIntExtra("timePermission", 0);
+                txt_numTimePermission.setText(String.valueOf(timePermission));
+                booleanPermission = intentData.getStringExtra("booleanPermission");
+                txt_booleanData.setText(String.valueOf(booleanPermission));
+            }
+        }catch (Exception err){
+            err.printStackTrace();
+        }
+    }
+
+    protected void  onPause(){
+        super.onPause();
+        mTimer.cancel();
+    }
+
+    protected void onResume(){
+        super.onResume();
+        chronometer();
+    }
+
     public void chronometer(){
 
         mTimerTask = new TimerTask(){
@@ -84,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         currentTime++;
                         txt_numTimeMain.setText(String.valueOf(currentTime));
-
                     }
                 });
             }
