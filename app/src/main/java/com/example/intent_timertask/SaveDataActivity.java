@@ -34,14 +34,12 @@ public class SaveDataActivity extends AppCompatActivity {
 
         timeMain = getIntent().getIntExtra("timeMain", 0);
         txt_timeMain.setText(String.valueOf(timeMain));
-        //txt_timeMain.setText(getIntent().getStringExtra("timeMain"));
 
         btn_goHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent goBack = new Intent(SaveDataActivity.this, MainActivity.class);
                 goBack.putExtra("timeData", currentTime);
-                //startActivity(goBack);
                 finish();
             }
         });

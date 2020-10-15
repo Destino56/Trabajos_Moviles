@@ -33,14 +33,12 @@ public class AddPermissionsActivity extends AppCompatActivity {
 
         timeMain = getIntent().getIntExtra("timeMain", 0);
         txt_timeMain.setText(String.valueOf(timeMain));
-        //txt_timeMain.setText(getIntent().getStringExtra("timeMain"));
 
         btn_goHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goBack = new Intent(/*AddPermissionsActivity.this, MainActivity.class*/);
+                Intent goBack = new Intent();
                 goBack.putExtra("timePermission", currentTime);
-                //startActivity(goBack);
                 finish();
             }
         });

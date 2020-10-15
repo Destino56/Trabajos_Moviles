@@ -41,17 +41,11 @@ public class MainActivity extends AppCompatActivity {
         txt_booleanData = (TextView) findViewById(R.id.txt_booleanData);
         txt_booleanPermission = (TextView) findViewById(R.id.txt_booleanPermission);
 
-
-
-        //txt_numTimeData.setText(getIntent().getStringExtra("timeData"));
-        //txt_numTimePermission.setText(getIntent().getStringExtra("timePermission"));
-
         btn_goActivity2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent goActivity2 = new Intent(MainActivity.this, SaveDataActivity.class);
                 goActivity2.putExtra("timeMain", currentTime);
-                //mTimer.cancel();  No sé como renaudarlo luego
                 startActivityForResult(goActivity2, 2);
             }
         });
@@ -61,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goActivity3 = new Intent(MainActivity.this, AddPermissionsActivity.class);
                 goActivity3.putExtra("timeMain", currentTime);
-                //mTimer.cancel();  No sé como renaudarlo luego
                 startActivityForResult(goActivity3, 3);
             }
         });
@@ -74,19 +67,19 @@ public class MainActivity extends AppCompatActivity {
            super.onActivityResult(requestCode, resultCode, intentData);
             if(requestCode==2){
 
-                txt_numTimePermission.setText(String.valueOf(requestCode));
-                //timeData = intentData.getIntExtra("timeData", 5);
-                //txt_numTimeData.setText(String.valueOf(timeData));
-                String timeData = String.valueOf(intentData.getIntExtra("timeData", 5));
-                txt_numTimeData.setText(timeData);
+                //txt_numTimePermission.setText(String.valueOf(requestCode));
+                timeData = intentData.getIntExtra("timeData", 5);
+                txt_numTimeData.setText(String.valueOf(timeData));
+                //String timeData = String.valueOf(intentData.getIntExtra("timeData", 5));
+                //txt_numTimeData.setText(timeData);
                 booleanData = intentData.getStringExtra("booleanData");
                 txt_booleanData.setText(String.valueOf(booleanData));
 
             }else if(requestCode==3){
-                timePermission = intentData.getIntExtra("timePermission", 0);
+                timePermission = intentData.getIntExtra("timePermission", 5);
                 txt_numTimePermission.setText(String.valueOf(timePermission));
                 booleanPermission = intentData.getStringExtra("booleanPermission");
-                txt_booleanData.setText(String.valueOf(booleanPermission));
+                txt_booleanPermission.setText(String.valueOf(booleanPermission));
             }
         }catch (Exception err){
             err.printStackTrace();
